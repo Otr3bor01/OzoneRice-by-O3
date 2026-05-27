@@ -46,7 +46,7 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 
 --system_binds--
-hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprshutdown")) --WIP
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprshutdown --dry-run")) --WIP
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot --freeze -m region"))
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })

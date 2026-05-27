@@ -35,10 +35,33 @@ hl.bind(mainMod .. " + up", hl.dsp.focus({direction = "up"}))
 hl.bind(mainMod .. " + down", hl.dsp.focus({direction = "down"}))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 
-for i = 1, 10 do
-    local key = i % 10 -- 10 maps to key 0
-    hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
+
+for i = 1, 5 do
+    local key = tostring(i)
+    hl.bind(mainMod .. " + " .. key, function()
+        local ws = hl.get_active_workspace()
+        if ws == nil then return end
+        
+        if ws.id == i then
+            hl.dispatch(hl.dsp.focus({ workspace = i + 5 }))
+        else
+            hl.dispatch(hl.dsp.focus({ workspace = i }))
+        end
+    end)
+end
+
+for i = 1, 5 do
+    local key = tostring(i)
+    hl.bind(mainMod .. " + SHIFT + " .. key, function()
+        local ws = hl.get_active_workspace()
+        if ws == nil then return end
+        
+        if ws.id == i then
+            hl.dispatch(hl.dsp.window.move({ workspace = i + 5 }))
+        else
+            hl.dispatch(hl.dsp.window.move({ workspace = i }))
+        end
+    end)
 end
 
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })

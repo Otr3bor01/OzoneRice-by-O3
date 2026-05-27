@@ -25,4 +25,29 @@ button:hover {
   border: none;
   outline: none;
 }
+#workspaces {
+  font-size: 0.1rem;
+  padding: 10px 10px;
+  margin: 0px 0px;
+  border-radius: 99px;
+}
 
+#workspaces button {
+  min-height: 0px;
+  min-width: 20px;
+  padding: 0px 4px;
+  background-color: transparent;
+  margin: 0px 3px;
+  border: 1px solid #443355;
+  transition: background-color 0.2s ease;
+}
+
+#workspaces button:hover {
+  background-color: transparent;
+  border: 1px solid #D9D0E8;
+}
+
+#workspaces button.active {
+  background-color: #443355;
+  border: 1px solid #D9D0E8;
+}

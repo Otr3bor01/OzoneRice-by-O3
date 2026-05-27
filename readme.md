@@ -43,3 +43,14 @@ I'm also learning a lot of new concept and coding stuff (for example git, css, c
 - [ ] new calendar widget sync. with other calendars  
 - [ ] some cool vlc configs  
 - [ ] wlogout  
+
+# The workspaces system
+I’ve been trying to build something fast and efficient.
+The idea is that, with two monitors, I can have five sets of “quick dual workspaces.”
+
+Pressing MainMod + 1 once focuses workspace 1, while double-pressing MainMod + 1 gives me an overview of the first set of workspaces (1 on the first monitor and 6 on the second monitor).
+
+The same applies to MainMod + 2/3/4/5.
+
+This might seem limiting, but I find it much better than having to reach across the keyboard.
+This setup also allows me to keep five persistent workspaces per screen easily.

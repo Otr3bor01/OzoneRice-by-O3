@@ -1,4 +1,10 @@
 ///// AI GENERATED: Using it just as a placeholder, module not implemented yet. /////
+// QML documentation: https://doc.qt.io/qt-6/qtqml-index.html
+//Quickshell documentation: https://quickshell.org/docs/v0.3.0/types/Quickshell/
+
+
+
+
 
 // modules/Bar.qml
 import Quickshell

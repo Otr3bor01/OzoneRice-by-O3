@@ -64,6 +64,37 @@ for i = 1, 5 do
     end)
 end
 
+for i = 5, 10 do
+    if i == 10 then
+        local key = "0"
+            hl.bind(mainMod .. " + " .. key, function()
+        hl.dispatch(hl.dsp.focus({ workspace = i }))
+        end)
+    else
+        local key = tostring(i)
+            hl.bind(mainMod .. " + " .. key, function()
+        hl.dispatch(hl.dsp.focus({ workspace = i }))
+        end)
+    end
+
+end
+
+for i = 5, 10 do
+    if i == 10 then
+        local key = "0"
+        hl.bind(mainMod .. " + SHIFT + " .. key, function()
+        hl.dispatch(hl.dsp.window.move({ workspace = i }))
+    end)
+    else
+        local key = tostring(i)
+        hl.bind(mainMod .. " + SHIFT + " .. key, function()
+        hl.dispatch(hl.dsp.window.move({ workspace = i }))
+        end)
+    end
+
+end
+
+
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 

@@ -56,3 +56,5 @@ The same applies to MainMod + 2/3/4/5.
 
 This might seem limiting, but I find it much better than having to reach across the keyboard.
 This setup also allows me to keep five persistent workspaces per screen easily.
+
+Also, if you desire, you could still use the classic MainMod + 6/7/8/9/0

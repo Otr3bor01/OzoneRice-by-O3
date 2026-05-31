@@ -33,16 +33,18 @@ I'm also learning a lot of new concept and coding stuff (for example git, css, c
 + fastfetch  
 + btop (incoming configs)  
 
+# Now working on:
+    Huge quickshell setup :face_holding_back_tears: (:fearful:)
+
 # Incoming features
-- [ ] eww  
-- [ ] spicetify custom theme  
+- [ ] ~eww~ quickshell
+- [ ] ~spicetify custom theme~  strawberry config and themes
 - [ ] interchangeable themes  
 - [ ] notification client widget  
 - [ ] new lf configs  
 - [ ] new thunar configs  
-- [ ] new calendar widget sync. with other calendars  
-- [ ] some cool vlc configs  
-- [ ] wlogout  
+- [ ] new calendar widget sync. with other calendars   
+- [ ] ~wlogout~ quickshell logout system
 
 # The workspaces system
 I’ve been trying to build something fast and efficient.

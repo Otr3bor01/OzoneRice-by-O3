@@ -34,7 +34,7 @@ I'm also learning a lot of new concept and coding stuff (for example git, css, c
 + btop (incoming configs)  
 
 # Now working on:
-    Huge quickshell setup :face_holding_back_tears: (:fearful:)
+Huge quickshell setup :face_holding_back_tears: (:fearful:)
 
 # Incoming features
 - [ ] ~eww~ quickshell

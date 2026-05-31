@@ -3,5 +3,5 @@ import QtQuick
 import qs.modules
 
 ShellRoot {
-    Bar {} // Ricorda che i moduli devono iniziare con una maiusola
+    CenterBar {} // Ricorda che i moduli devono iniziare con una maiusola
 }

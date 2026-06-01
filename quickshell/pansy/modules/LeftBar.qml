@@ -2,6 +2,7 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
+import Quickshell.Io
 
 PanelWindow {
     anchors {
@@ -19,11 +20,20 @@ PanelWindow {
         top: 10;
     }
 
+FileView {
+    id: monitorState
+    path: "/tmp/hypr_secondMonitor"
+    watchChanges: true
+    onFileChanged: reload()
+}
+
     //Hyprland workspace (Am I doing everything wrong?)
     Rectangle { 
         anchors.fill: parent
         color: "#1C1C1E"
         radius: 10
+        border.color: monitorState.text().trim() === "false" ? "#007AFF" : "#2C2C2E"
+        border.width: 3
         Row {
             anchors.fill: parent
             anchors.centerIn: parent

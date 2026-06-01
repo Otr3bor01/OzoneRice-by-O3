@@ -36,63 +36,35 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({direction = "down"}))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 
 
+local secondMonitor = false
 for i = 1, 5 do
     local key = tostring(i)
     hl.bind(mainMod .. " + " .. key, function()
-        local ws = hl.get_active_workspace()
-        if ws == nil then return end
-        
-        if ws.id == i then
+        if secondMonitor then
             hl.dispatch(hl.dsp.focus({ workspace = i + 5 }))
         else
             hl.dispatch(hl.dsp.focus({ workspace = i }))
         end
     end)
 end
+--TO VISUALIZE WITH QUICKSHELL
 
-for i = 1, 5 do
-    local key = tostring(i)
-    hl.bind(mainMod .. " + SHIFT + " .. key, function()
-        local ws = hl.get_active_workspace()
-        if ws == nil then return end
-        
-        if ws.id == i then
-            hl.dispatch(hl.dsp.window.move({ workspace = i + 5 }))
-        else
-            hl.dispatch(hl.dsp.window.move({ workspace = i }))
-        end
-    end)
-end
-
-for i = 5, 10 do
-    if i == 10 then
-        local key = "0"
-            hl.bind(mainMod .. " + " .. key, function()
-        hl.dispatch(hl.dsp.focus({ workspace = i }))
-        end)
-    else
-        local key = tostring(i)
-            hl.bind(mainMod .. " + " .. key, function()
-        hl.dispatch(hl.dsp.focus({ workspace = i }))
-        end)
+local function updateState()
+    local f = io.open("/tmp/hypr_secondMonitor", "w")
+    if f then
+        f:write(secondMonitor and "true" or "false")
+        f:close()
     end
-
 end
 
-for i = 5, 10 do
-    if i == 10 then
-        local key = "0"
-        hl.bind(mainMod .. " + SHIFT + " .. key, function()
-        hl.dispatch(hl.dsp.window.move({ workspace = i }))
-    end)
-    else
-        local key = tostring(i)
-        hl.bind(mainMod .. " + SHIFT + " .. key, function()
-        hl.dispatch(hl.dsp.window.move({ workspace = i }))
-        end)
-    end
+updateState() 
 
-end
+
+hl.bind(mainMod .. " + TAB", function()
+    secondMonitor = not secondMonitor
+    updateState()
+end)
+
 
 
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })

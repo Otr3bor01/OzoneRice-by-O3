@@ -36,7 +36,7 @@ PanelWindow {
     Rectangle { 
         anchors.fill: parent
         color: Qt.rgba(18/255, 13/255, 30/255, 0.5)
-        radius: 10
+        radius: 100
         border.color: monitorState.text().trim() === "true" ? "#D9D0E8" : "#443355"
         border.width: 1
         Row {

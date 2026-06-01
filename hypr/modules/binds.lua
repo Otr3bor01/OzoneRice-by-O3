@@ -35,7 +35,7 @@ hl.bind(mainMod .. " + up", hl.dsp.focus({direction = "up"}))
 hl.bind(mainMod .. " + down", hl.dsp.focus({direction = "down"}))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 
-
+--workspaces system_binds
 local secondMonitor = false
 for i = 1, 5 do
     local key = tostring(i)
@@ -47,7 +47,17 @@ for i = 1, 5 do
         end
     end)
 end
---TO VISUALIZE WITH QUICKSHELL
+
+for i = 1, 5 do
+    local key = tostring(i)
+    hl.bind(mainMod .. " + SHIFT + " .. key, function()
+        if secondMonitor then
+            hl.dispatch(hl.dsp.window.move({ workspace = i + 5 }))
+        else
+            hl.dispatch(hl.dsp.window.move({ workspace = i }))
+        end
+    end)
+end
 
 local function updateState()
     local f = io.open("/tmp/hypr_secondMonitor", "w")
@@ -65,7 +75,7 @@ hl.bind(mainMod .. " + TAB", function()
     updateState()
 end)
 
-
+--workspaces system_binds end
 
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })

@@ -47,14 +47,5 @@ Huge quickshell setup :face_holding_back_tears: (:fearful:)
 - [ ] ~wlogout~ quickshell logout system
 
 # The workspaces system
-I’ve been trying to build something fast and efficient.
-The idea is that, with two monitors, I can have five sets of “quick dual workspaces.”
-
-Pressing MainMod + 1 once focuses workspace 1, while double-pressing MainMod + 1 gives me an overview of the first set of workspaces (1 on the first monitor and 6 on the second monitor).
-
-The same applies to MainMod + 2/3/4/5.
-
-This might seem limiting, but I find it much better than having to reach across the keyboard.
-This setup also allows me to keep five persistent workspaces per screen easily.
-
-Also, if you desire, you could still use the classic MainMod + 6/7/8/9/0
+Pressing MainMod + 1/2/3/4/5 will change the workspace on the main monitor. 
+However pressing MainMod + Tab will make you change monitor selector, giving you the opportunity to change workspaces on the other monitor

@@ -3,14 +3,16 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Io
-import Quickshell.Wayland
+
 
 PanelWindow {
     screen: Quickshell.screens.find(s => s.name === "DP-2")
+    exclusiveZone: 35
     anchors {
         bottom: false;
         left: true;
         top: true;
+        right: true;
     }
     
     width: 300
@@ -20,6 +22,7 @@ PanelWindow {
     margins{
         left: 10;
         top: 10;
+        right: 1620;
     }
 
     FileView {
@@ -35,7 +38,7 @@ PanelWindow {
         color: Qt.rgba(18/255, 13/255, 30/255, 0.5)
         radius: 10
         border.color: monitorState.text().trim() === "true" ? "#D9D0E8" : "#443355"
-        border.width: 2
+        border.width: 1
         Row {
             anchors.fill: parent
             anchors.centerIn: parent
@@ -47,10 +50,27 @@ PanelWindow {
                     width: 50
                     height: 10
                     radius: 5
-                    color: modelData.focused ? "#443355" : Qt.rgba(18/255, 13/255, 30/255, 0.5)
-                    border.color: modelData.focused ? "#D9D0E8" : "#2C2C2E"
+                    color: modelData.active 
+                        ? "#443355" 
+                        : Qt.rgba(18/255, 13/255, 30/255, 0.5)
+                    border.color: modelData.active 
+                        ? "#D9D0E8" 
+                        : mouseArea.containsMouse 
+                            ? Qt.rgba(0.85, 0.82, 0.91, 0.5)
+                            : "#2C2C2E"
                     border.width: 2
                     anchors.verticalCenter: parent.verticalCenter
+                    //on click change workspace
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+
+                        onClicked: {
+                            Hyprland.dispatch("hl.dsp.focus({ workspace = " + modelData.id + " })")
+                        }
+                    }
                 }
             }
         }

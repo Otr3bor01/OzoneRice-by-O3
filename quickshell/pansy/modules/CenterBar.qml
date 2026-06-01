@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Layouts
 
 PanelWindow {
+    exclusionMode: ExclusionMode.Ignore
     anchors {
         bottom: false;
         right: true;

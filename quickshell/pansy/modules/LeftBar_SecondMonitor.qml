@@ -3,8 +3,10 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
 import Quickshell.Io
+import Quickshell.Wayland
 
 PanelWindow {
+    screen: Quickshell.screens.find(s => s.name === "DP-2")
     anchors {
         bottom: false;
         left: true;
@@ -32,7 +34,7 @@ PanelWindow {
         anchors.fill: parent
         color: Qt.rgba(18/255, 13/255, 30/255, 0.5)
         radius: 10
-        border.color: monitorState.text().trim() === "false" ? "#D9D0E8" : "#443355"
+        border.color: monitorState.text().trim() === "true" ? "#D9D0E8" : "#443355"
         border.width: 2
         Row {
             anchors.fill: parent
@@ -40,7 +42,7 @@ PanelWindow {
             spacing: 6
             padding: 8
             Repeater {
-                model: Hyprland.workspaces.values.filter(ws => ws.id > 0 && ws.id <= 5)
+                model: Hyprland.workspaces.values.filter(ws => ws.id > 5 && ws.id <= 10)
                 delegate: Rectangle {
                     width: 50
                     height: 10

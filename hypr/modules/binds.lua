@@ -8,7 +8,7 @@ local menu = "fuzzel" --wip
 -- local codeTextEditor = vscodium
 local fileManager_GUI = "thunar"
 local mainMod = "SUPER"
--- local musicPlayer =
+local musicPlayer = "strawberry"
 local browser = "firefox"
 
 -------------
@@ -19,7 +19,7 @@ hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))  --hyprlock
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " -e " .. fileManager_TUI))
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd(fileManager_GUI))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
---hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(musicPlayer))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(musicPlayer))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian")) --obsidian
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("code")) --vscode

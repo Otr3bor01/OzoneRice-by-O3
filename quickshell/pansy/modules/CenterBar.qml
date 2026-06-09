@@ -100,6 +100,7 @@ PanelWindow {
                 anchors.centerIn: parent
                 spacing: 6
                 padding: 8
+                //Theme Changer Interface (WIP)
                 Text {
                     text: "Wip Theme :3"
                     color: "#D9D0E8"

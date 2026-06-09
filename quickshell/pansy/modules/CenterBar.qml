@@ -3,11 +3,13 @@ import QtQuick
 import Quickshell.Io
 import Quickshell.Hyprland
 import Quickshell.Services.Mpris
+import QtQuick.Layouts
 
 PanelWindow {
     //===Basics
     id: root
     screen: Quickshell.screens.find(s => s.name === "DP-1")
+    aboveWindows: false
     anchors{
         bottom: false;
         left: true;
@@ -95,18 +97,17 @@ PanelWindow {
             border.color: "#443355"
             border.width: 1.5
             //Center Bar Row
-            Row {
+            RowLayout {
                 anchors.fill: parent
                 anchors.centerIn: parent
-                spacing: 6
-                padding: 8
+                spacing: 30
                 //Theme Changer Interface (WIP)
                 Text {
                     text: "Wip Theme :3"
                     color: "#D9D0E8"
                     font.pixelSize: 14
                 }
-                //Mpris Row
+                //Mpris Row  (WIP) 
                 Row {
                     spacing: 6
                     Text {
@@ -114,12 +115,29 @@ PanelWindow {
                         color: "#D9D0E8"
                         font.pixelSize: 14
                     }
-
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.fillWidth : true
                     Text {
+
+                        Layout.alignment : Qt.AlignHCenter
                         text: "Me"
                         color: "#D9D0E8"
                         font.pixelSize: 12
                     }
+                }
+                //Time and Date (WIP)
+                Text {
+                    text: "   "+ Qt.formatDateTime(new Date(), "hh:mm")
+                    color: "#D9D0E8"
+                    font.pixelSize: 16
+                    font.bold: true
+                }
+
+                Text {
+                    text: "   "+ Qt.formatDateTime(new Date(), "dddd, MMMM d")
+                    color: "#D9D0E8"
+                    font.pixelSize: 12
+                    font.bold: true
                 }
 
             }

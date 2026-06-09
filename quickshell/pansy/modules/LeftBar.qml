@@ -5,6 +5,7 @@ import Quickshell.Hyprland
 import Quickshell.Io
 
 PanelWindow {
+    screen: Quickshell.screens.find(s => s.name === "DP-1")
     exclusiveZone: 35
     anchors {
         bottom: false;
@@ -28,7 +29,7 @@ PanelWindow {
         path: "/tmp/hypr_secondMonitor"
         watchChanges: true
         onFileChanged: reload()
-}
+    }
 
     //Hyprland workspace (Am I doing everything wrong?)
     Rectangle { 

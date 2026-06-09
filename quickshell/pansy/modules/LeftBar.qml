@@ -5,6 +5,7 @@ import Quickshell.Hyprland
 import Quickshell.Io
 
 PanelWindow {
+    visible: false  ////////////////============================
     screen: Quickshell.screens.find(s => s.name === "DP-1")
     exclusiveZone: 35
     anchors {
@@ -14,7 +15,7 @@ PanelWindow {
         right: true;
     }
     
-    width: 300
+    implicitWidth: 300
     implicitHeight: 35
     color: "transparent"
 

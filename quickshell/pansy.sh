@@ -1,1 +1,1 @@
-quickshell --config ./pansy
+dbus-run-session quickshell --config ./pansy

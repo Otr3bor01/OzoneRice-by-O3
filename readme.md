@@ -35,7 +35,7 @@ I'm also learning a lot of new concept and coding stuff (for example git, css, c
 
 # Now working on:
 Huge quickshell setup :face_holding_back_tears: (:fearful:)
-[![Quickshell WIP]](https://youtu.be/TGHdCalkJU0)
+[![Quickshell WIP]](https://github.com/Otr3bor01/OzoneRice-by-O3/blob/main/infoImages/2026-06-11%2000-07-53Compressed.mp4)
 
 # Incoming features
 - [ ] ~eww~ quickshell

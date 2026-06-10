@@ -35,7 +35,7 @@ I'm also learning a lot of new concept and coding stuff (for example git, css, c
 
 # Now working on:
 Huge quickshell setup :face_holding_back_tears: (:fearful:)
-![The WIP quickshell bar](https://youtu.be/TGHdCalkJU0)
+<iframe width="560" height="315" src="https://youtu.be/TGHdCalkJU0">
 # Incoming features
 - [ ] ~eww~ quickshell
 - [ ] ~spicetify custom theme~  strawberry config and themes

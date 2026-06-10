@@ -129,33 +129,30 @@ PanelWindow {
 
                 //Time and Date (WIP)
                 Item{
+                    id: dateTime
                     property var currentTime: new Date()
                     Layout.alignment: Qt.AlignVCenter
+                    Layout.rightMargin: 105
                     Timer{
                         interval: 1000
                         running: true
                         repeat: true
                         onTriggered: parent.currentTime = new Date()
                     }
-
+                    
                     Text{
                         anchors.centerIn: parent
-                        text: "  " + Qt.formatDateTime(parent.currentTime, "hh:mm") +"         "
+                        text: "  " + Qt.formatDateTime(parent.currentTime, "hh:mm") +"    " + "  " + Qt.formatDateTime(parent.currentTime, "dd/mm/yyyy") 
                         color: "#D9D0E8"
                         font.pixelSize: 16
                         font.bold: true
                     }
-                }
 
-                Text {
-                    text: "  "+ Qt.formatDateTime(new Date(), "dd/mm/yyyy")+ "     "
-                    color: "#D9D0E8"
-                    font.pixelSize: 16
-                    font.bold: true
+                    
                 }
 
             }
-
+            // 
         }
     }
 }

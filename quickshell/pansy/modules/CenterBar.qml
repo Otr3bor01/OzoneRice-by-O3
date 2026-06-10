@@ -163,7 +163,7 @@ PanelWindow {
                         }
                         Text{
                             y: 2
-                            text: Qt.formatDateTime(dateTime.currentTime, "dd/mm/yyyy") 
+                            text: Qt.formatDateTime(dateTime.currentTime, "dd/MM/yyyy") 
                             color: "#D9D0E8"
                             font.pixelSize: 16
                             font.bold: true

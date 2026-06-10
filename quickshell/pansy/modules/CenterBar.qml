@@ -140,12 +140,34 @@ PanelWindow {
                         onTriggered: parent.currentTime = new Date()
                     }
                     
-                    Text{
+                    Row{
                         anchors.centerIn: parent
-                        text: "  " + Qt.formatDateTime(parent.currentTime, "hh:mm") +"    " + "  " + Qt.formatDateTime(parent.currentTime, "dd/mm/yyyy") 
-                        color: "#D9D0E8"
-                        font.pixelSize: 16
-                        font.bold: true
+                        Text{
+                            text: "  "
+                            color: "#C87DD4"
+                            font.pixelSize: 18
+                            font.bold: true
+                        }
+                        Text{
+                            y:2
+                            text: Qt.formatDateTime(dateTime.currentTime, "hh:mm") 
+                            color: "#D9D0E8"
+                            font.pixelSize: 16
+                            font.bold: true
+                        }
+                        Text{
+                            text: "    " + "  "
+                            color: "#C87DD4"
+                            font.pixelSize: 18
+                            font.bold: true
+                        }
+                        Text{
+                            y: 2
+                            text: Qt.formatDateTime(dateTime.currentTime, "dd/mm/yyyy") 
+                            color: "#D9D0E8"
+                            font.pixelSize: 16
+                            font.bold: true
+                        }
                     }
 
                     

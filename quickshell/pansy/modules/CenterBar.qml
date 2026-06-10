@@ -98,6 +98,7 @@ PanelWindow {
             border.width: 1.5
             //Center Bar Row
             RowLayout {
+                id: centralBar
                 anchors.fill: parent
                 anchors.centerIn: parent
                 spacing: 30
@@ -125,16 +126,35 @@ PanelWindow {
                         font.pixelSize: 12
                     }
                 }
+                //Time Rectangle :D
+                Rectangle {
+                    id: centroOra
+                    color: "transparent"
+                    width: 10
+                    height: 10
+                }
                 //Time and Date (WIP)
-                Text {
-                    text: "   "+ Qt.formatDateTime(new Date(), "hh:mm")
-                    color: "#D9D0E8"
-                    font.pixelSize: 16
-                    font.bold: true
+                Item{
+                    property var currentTime: new Date()
+                    anchors.centerIn: centroOra
+                    Timer{
+                        interval: 1000
+                        running: true
+                        repeat: true
+                        onTriggered: parent.currentTime = new Date()
+                    }
+
+                    Text{
+                        anchors.centerIn: parent
+                        text: "  " + Qt.formatDateTime(parent.currentTime, "hh:mm")
+                        color: "#D9D0E8"
+                        font.pixelSize: 16
+                        font.bold: true
+                    }
                 }
 
                 Text {
-                    text: "   "+ Qt.formatDateTime(new Date(), "dddd, MMMM d")
+                    text: "   "+ Qt.formatDateTime(new Date(), "dddd, MMMM d")+ "     "
                     color: "#D9D0E8"
                     font.pixelSize: 12
                     font.bold: true

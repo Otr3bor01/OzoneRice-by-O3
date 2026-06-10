@@ -35,7 +35,7 @@ I'm also learning a lot of new concept and coding stuff (for example git, css, c
 
 # Now working on:
 Huge quickshell setup :face_holding_back_tears: (:fearful:)
-
+![The WIP quickshell bar](https://github.com/Otr3bor01/OzoneRice-by-O3/blob/main/infoImages/2026-06-11%2000-07-53.mp4)
 # Incoming features
 - [ ] ~eww~ quickshell
 - [ ] ~spicetify custom theme~  strawberry config and themes

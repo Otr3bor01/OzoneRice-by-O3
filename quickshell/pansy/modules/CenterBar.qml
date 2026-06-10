@@ -104,7 +104,7 @@ PanelWindow {
                 spacing: 30
                 //Theme Changer Interface (WIP)
                 Text {
-                    text: "Wip Theme :3"
+                    text: "     Wip Theme :3"
                     color: "#D9D0E8"
                     font.pixelSize: 14
                 }
@@ -126,17 +126,11 @@ PanelWindow {
                         font.pixelSize: 12
                     }
                 }
-                //Time Rectangle :D
-                Rectangle {
-                    id: centroOra
-                    color: "transparent"
-                    width: 10
-                    height: 10
-                }
+
                 //Time and Date (WIP)
                 Item{
                     property var currentTime: new Date()
-                    anchors.centerIn: centroOra
+                    Layout.alignment: Qt.AlignVCenter
                     Timer{
                         interval: 1000
                         running: true
@@ -146,7 +140,7 @@ PanelWindow {
 
                     Text{
                         anchors.centerIn: parent
-                        text: "  " + Qt.formatDateTime(parent.currentTime, "hh:mm")
+                        text: "  " + Qt.formatDateTime(parent.currentTime, "hh:mm") +"         "
                         color: "#D9D0E8"
                         font.pixelSize: 16
                         font.bold: true
@@ -154,9 +148,9 @@ PanelWindow {
                 }
 
                 Text {
-                    text: "   "+ Qt.formatDateTime(new Date(), "dddd, MMMM d")+ "     "
+                    text: "  "+ Qt.formatDateTime(new Date(), "dd/mm/yyyy")+ "     "
                     color: "#D9D0E8"
-                    font.pixelSize: 12
+                    font.pixelSize: 16
                     font.bold: true
                 }
 

@@ -1,5 +1,6 @@
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar")
+    ---hl.exec_cmd("waybar")
+    hl.exec_cmd("bash ~/.config/quickshell/pansy.sh")
     hl.exec_cmd("kitty")
     hl.exec_cmd("kitty --hold -e cava &")
     hl.exec_cmd("kitty --hold -e tty-clock -c -C 5- &")

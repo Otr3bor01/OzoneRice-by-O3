@@ -4,6 +4,7 @@ import Quickshell.Io
 import Quickshell.Hyprland
 import Quickshell.Services.Mpris
 import QtQuick.Layouts
+import QtQuick.Effects
 
 PanelWindow {
     //===Basics
@@ -31,8 +32,40 @@ PanelWindow {
         onFileChanged: reload()
     }
 
-    //===Mpris
-    //Crying so loud rn, help
+
+    //===Mpris property bind
+    QtObject {
+        id: internalState
+        readonly property var cache: ({ player: null })
+    }
+
+    property var activePlayer: {
+        var players = (Mpris && Mpris.players) ? Mpris.players.values : [];
+        
+        var playingPlayer = null;
+        for (var j = 0; j < players.length; j++) {
+            if (players[j].playbackState === MprisPlayer.Playing) {
+                playingPlayer = players[j];
+                break;
+            }
+        }
+
+        if (playingPlayer) {
+            internalState.cache.player = playingPlayer;
+            return playingPlayer;
+        }
+
+        var cached = internalState.cache.player;
+        var exists = false;
+        for (var k = 0; k < players.length; k++) {
+            if (players[k] === cached) {
+                exists = true;
+                break;
+            }
+        }
+
+        return exists ? cached : (players.length > 0 ? players[0] : null);
+    }
 
     //===Row
     Row{
@@ -106,8 +139,8 @@ PanelWindow {
                 Item{
                     id: themeName
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.leftMargin: 50
-                    Layout.bottomMargin: 11.5
+                    Layout.leftMargin: 60
+                    Layout.bottomMargin: 0
                     
                     RowLayout {
                         spacing: 5
@@ -116,7 +149,7 @@ PanelWindow {
                             color: "#C87DD4"
                             font.pixelSize: 18
                             font.bold: true
-                            text: "     ✿"
+                            text: "✿"
                         }
                         Text {
                             text: "Pansy"
@@ -134,38 +167,181 @@ PanelWindow {
                     }
                 }
                 //Mpris Row  (WIP) 
-                Row {
-                    property MprisPlayer player: Mpris.players[0]
-
-                    Image {
-                        source: parent.player ? parent.player.trackArtUrls: ""
-                        width: 50;
-                        height: 50;
-                    }
-                    spacing: 6
-                    Text {
-                        text: "Help"
-                        color: "#D9D0E8"
-                        font.pixelSize: 14
-                    }
+                Item {
+                    implicitWidth: 300
+                    Layout.rightMargin: 200
+                    Layout.leftMargin: 200
                     Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth : true
-                    Text {
+                    RowLayout {
+                        anchors.centerIn: parent
+                        spacing: 6
+                        Text {
+                            text: ""
+                            font.pixelSize: 16
+                            color: "#C87DD4"
+                            font.family: "JetBrainsMono Nerd Font"
+                        }
+                        Text { //artist
+                            text: {
+                                if (!activePlayer) return "No player";
+                                
+                                var artist = activePlayer.trackArtist ? activePlayer.trackArtist : "";
+                                
+                                return artist !== "" ? artist : artist
+                            }
+                            font.family: "Iosevka"
+                            font.bold: true
+                            font.pixelSize: 16
+                            color: "#D9D0E8"
 
-                        Layout.alignment : Qt.AlignHCenter
-                        text: "Me"
-                        color: "#D9D0E8"
-                        font.pixelSize: 12
+                            Layout.maximumWidth: 150
+                            elide: Text.ElideRight 
+                        }
+                        Text {
+                            text: " "
+                        }
+                        Text {
+                            text: ""
+                            font.pixelSize: 16
+                            color: "#C87DD4"
+                            font.family: "JetBrainsMono Nerd Font"
+                        }
+                        Text {
+                            text: {
+                                if (!activePlayer) return "";
+
+                                var title = activePlayer.trackTitle ? activePlayer.trackTitle : "!Unknown!";
+
+                                return title !== "!Unknown!" ? title : title
+                            }
+                            Layout.maximumWidth: 250 
+                            elide: Text.ElideRight 
+                            font.family: "Iosevka"
+                            font.pixelSize: 16
+                            color: "#D9D0E8"
+                        }
+
+                        Text { //spacer
+                            text: "    "
+                        }
+
+                        
+                        Text { //previous
+                            text: "󰒮"
+                            font.pixelSize: 30
+                            color: previousMouse.containsMouse ? "#D9D0E8" : "#C87DD4"
+                            
+                            MouseArea {
+                                id: previousMouse
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: if (activePlayer && activePlayer.canGoPrevious) activePlayer.previous()
+                            }
+                        }
+                        Item { //cover and pause
+                            Layout.preferredWidth: 25
+                            Layout.preferredHeight: 25
+
+                            Rectangle { //fallback
+                                anchors.fill: parent
+                                color: "#D9D0E8"
+                                radius: parent.width/2
+                                
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "󰎇"
+                                    visible: parent.parent.children[2].status !== Image.Ready
+                                    color: "#443355"
+                                    font.bold: true
+                                    font.pixelSize: 20
+                                }
+                            }
+
+                            Rectangle { //mask
+                                id: mask
+                                anchors.fill: parent
+                                radius: parent.width/2
+                                visible: false 
+                                layer.enabled: true 
+                            }
+
+                            Rectangle { //border
+                                id: bordino
+                                anchors.centerIn: mask
+                                radius: bordino.width/2
+                                width: 28
+                                height: 28
+                                color: "transparent"
+                                border.color: "#C87DD4"
+                                z: 1
+                                border.width: 2
+
+                                antialiasing: true
+                            }
+                            Text { //pause
+                                anchors.centerIn: mask
+                                text: activePlayer && activePlayer.playbackState === MprisPlayer.Playing ? "" : ""
+                                color: playMouse.containsMouse ? "#D9D0E8" : "#C87DD4"
+                                MouseArea {
+                                    id: playMouse
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: if (activePlayer) activePlayer.togglePlaying()
+                                }
+                                font.bold: true
+                                font.pixelSize: 15
+                                z: 1
+                            }
+                            Image {
+                                id: coverImage
+                                anchors.fill: parent
+                                
+                                source: {
+                                    if (!activePlayer) return "";
+                                    var url = "";
+                                    if (activePlayer.artUrl) url = activePlayer.artUrl.toString();
+                                    if (url === "" && activePlayer.metadata && activePlayer.metadata["mpris:artUrl"]) {
+                                        url = activePlayer.metadata["mpris:artUrl"].toString();
+                                    }
+                                    if (url === "") return "";
+                                    if (url.startsWith("/")) return "file://" + url;
+                                    return url;
+                                }
+                                
+                                fillMode: Image.PreserveAspectCrop
+                                
+                                layer.enabled: true
+                                layer.effect: MultiEffect {
+                                    maskEnabled: true
+                                    maskSource: mask
+                                }
+                            }
+                        }
+
+                        Text {
+                            text: "󰒭"
+                            font.pixelSize: 30
+                            color: nextMouse.containsMouse ? "#D9D0E8" : "#C87DD4"
+
+                            MouseArea {
+                                id: nextMouse
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: if (activePlayer && activePlayer.canGoNext) activePlayer.next()
+                            }
+                        }
                     }
                 }
-
                 //Time and Date (WIP)
                 Item{
                     id: dateTime
                     property var currentTime: new Date()
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.rightMargin: 105
-                    Layout.bottomMargin: 11.5
+                    Layout.rightMargin: 100
+                    Layout.bottomMargin: 0
                     Timer{
                         interval: 1000
                         running: true
@@ -211,7 +387,6 @@ PanelWindow {
                 }
 
             }
-            // 
         }
     }
 }

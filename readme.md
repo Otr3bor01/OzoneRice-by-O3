@@ -20,7 +20,7 @@ I'm also learning a lot of new concept and coding stuff (for example git, css, c
 + fuzzler  
   
 **windget and bar**  
-+ waybar  
++ ~waybar~ Quickshell 
   
 **Terminal emulator**  
 + kitty  
@@ -39,7 +39,7 @@ Huge quickshell setup :face_holding_back_tears: (:fearful:)
 [![Quickshell WIP]](https://youtu.be/TGHdCalkJU0)
 
 # Incoming features
-- [ ] ~eww~ quickshell
+- [x] ~eww~ quickshell
 - [ ] ~spicetify custom theme~  strawberry config and themes
 - [ ] interchangeable themes  
 - [ ] notification client widget  

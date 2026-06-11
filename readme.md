@@ -1,5 +1,6 @@
 # Images
 ![Screenshot of the startup desktop view (while listening to some nice music ;D)](https://github.com/Otr3bor01/O3-dotted-files/blob/main/infoImages/2026-04-14-233157_hyprshot.png)
+![Screenshot of the startup desktop view (while listening to some other nice songs ;3). Also, this one is more recent and show the quickshell bar instead of the waybar one. :D](https://github.com/Otr3bor01/OzoneRice-by-O3/blob/main/infoImages/2026-06-12-005848_hyprshot.png)
 
 # Why this project
 This is being for me a really formative and fun experience as a former programmer. 

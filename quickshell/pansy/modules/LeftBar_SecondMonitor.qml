@@ -51,7 +51,7 @@ PanelWindow {
                     height: 10
                     radius: 5
                     color: modelData.active 
-                        ? "#443355" 
+                        ? "#C87DD4" 
                         : Qt.rgba(18/255, 13/255, 30/255, 0.5)
                     border.color: modelData.active 
                         ? "#D9D0E8" 

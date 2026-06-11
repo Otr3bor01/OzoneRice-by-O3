@@ -59,7 +59,7 @@ PanelWindow {
                         height: 10
                         radius: 5
                         color: modelData.active 
-                            ? "#443355" 
+                            ?  "#C87DD4"
                             : Qt.rgba(18/255, 13/255, 30/255, 0.5)
                         border.color: modelData.active 
                             ? "#D9D0E8" 
@@ -103,13 +103,45 @@ PanelWindow {
                 anchors.centerIn: parent
                 spacing: 30
                 //Theme Changer Interface (WIP)
-                Text {
-                    text: "     Wip Theme :3"
-                    color: "#D9D0E8"
-                    font.pixelSize: 14
+                Item{
+                    id: themeName
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.leftMargin: 50
+                    Layout.bottomMargin: 11.5
+                    
+                    RowLayout {
+                        spacing: 5
+                        anchors.centerIn: parent
+                        Text {
+                            color: "#C87DD4"
+                            font.pixelSize: 18
+                            font.bold: true
+                            text: "     ✿"
+                        }
+                        Text {
+                            text: "Pansy"
+                            color: "#D9D0E8"
+                            font.pixelSize: 18
+                            font.bold: true
+                            font.family: "Iosevka"
+                        }
+                        Text {
+                            color: "#C87DD4"
+                            font.pixelSize: 18
+                            font.bold: true
+                            text: "✿"
+                        }
+                    }
                 }
                 //Mpris Row  (WIP) 
                 Row {
+                    property MprisPlayer player: Mpris.players[0]
+
+                    Image {
+                        source: parent.player ? parent.player.trackArtUrls: ""
+                        width: 50;
+                        height: 50;
+                    }
                     spacing: 6
                     Text {
                         text: "Help"
@@ -133,6 +165,7 @@ PanelWindow {
                     property var currentTime: new Date()
                     Layout.alignment: Qt.AlignVCenter
                     Layout.rightMargin: 105
+                    Layout.bottomMargin: 11.5
                     Timer{
                         interval: 1000
                         running: true
@@ -140,33 +173,37 @@ PanelWindow {
                         onTriggered: parent.currentTime = new Date()
                     }
                     
-                    Row{
+                    RowLayout{
                         anchors.centerIn: parent
+                        spacing: 2
                         Text{
-                            text: "  "
+                            text: ""
                             color: "#C87DD4"
                             font.pixelSize: 18
                             font.bold: true
                         }
                         Text{
-                            y:2
                             text: Qt.formatDateTime(dateTime.currentTime, "hh:mm") 
                             color: "#D9D0E8"
                             font.pixelSize: 16
                             font.bold: true
+                            font.family: "Iosevka"
                         }
                         Text{
-                            text: "    " + "  "
+                            text:"      "
+                        }
+                        Text{
+                            text: ""
                             color: "#C87DD4"
                             font.pixelSize: 18
                             font.bold: true
                         }
                         Text{
-                            y: 2
                             text: Qt.formatDateTime(dateTime.currentTime, "dd/MM/yyyy") 
                             color: "#D9D0E8"
                             font.pixelSize: 16
                             font.bold: true
+                            font.family: "Iosevka"
                         }
                     }
 

@@ -387,6 +387,173 @@ PanelWindow {
                 }
 
             }
+
+        }
+        //spacer 
+        Rectangle {
+            width: 100
+            height: 100
+            color: "transparent"
+        }
+        Item{   //menù work in progress
+            width: 35
+            height: 35
+            anchors.verticalCenter: parent.verticalCenter
+            Rectangle {
+                id: archMenu
+                implicitWidth: 35
+                implicitHeight: implicitWidth
+                radius: implicitWidth / 2
+                anchors.centerIn: parent
+
+                color: Qt.rgba(18/255, 13/255, 30/255, 0.5)
+                border.color: "#443355"
+
+
+                //first animation!!
+                Behavior on implicitWidth {
+                    NumberAnimation {
+                        duration: 150
+                        easing.type: Easing.OutCubic
+                    }
+                }
+
+                MouseArea {
+                    id: archMenuMouse
+                    anchors.fill: parent
+                    hoverEnabled: true
+                }
+                
+                states: [ //first time using states
+                    State {
+                        name: "hovered"
+                        when: archMenuMouse.containsMouse
+                        PropertyChanges {
+                            target: archMenu
+                            implicitWidth: 35
+                            border.color: "#C87DD4"
+                            border.width: 2
+                        }
+                    },
+
+                    State {
+                        name: "default"
+                        when: !archMenuMouse.containsMouse
+                        PropertyChanges {
+                            target: archMenu
+                            implicitWidth: 30
+                        }
+                    }
+                ]
+            }
+            Text {
+                anchors.centerIn: parent
+                text: "󰣇"
+                font.pixelSize : 20
+                color: "#C87DD4"
+            }
+        }
+        Item{ //shutdown work in progress
+            width: 35
+            height: 35
+        }
+        Item { //updates
+            id: updates
+            property int updateCount: 0
+            width: 65
+            height: 35
+            anchors.verticalCenter: parent.verticalCenter
+
+            Timer {
+                interval: 600000
+                repeat: true
+                running: true
+                triggeredOnStart: true
+                onTriggered: updatesCheck.running = true
+            }
+
+            Process {
+                id: updatesCheck
+                command: ["checkupdates"]
+                stdout: SplitParser {
+                    onRead: (line) => {
+                        if (line.trim() !== "")
+                            updates.updateCount++
+                    }
+                }
+                onRunningChanged: {
+                    if (running) updates.updateCount = 0
+                }
+            }
+
+            Process {
+                id: updateRun
+                command: ["kitty", "--hold", "-e", "bash", "-c", "sudo pacman -Syu; echo '\nPremi invio per chiudere...'; read"]
+            }
+
+            Rectangle {
+                id: archUpdates
+                implicitWidth: 60
+                implicitHeight: implicitWidth - 30
+                radius: implicitWidth / 2
+                anchors.centerIn: parent
+                color: Qt.rgba(18/255, 13/255, 30/255, 0.5)
+                border.color: "#443355"
+
+                Behavior on implicitWidth {
+                    NumberAnimation { duration: 150; easing.type: Easing.OutCubic }
+                }
+
+                MouseArea {
+                    id: archUpdatesMouse
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: updateRun.running = true
+                    cursorShape: Qt.PointingHandCursor
+                }
+
+                states: [
+                    State {
+                        name: "hovered"
+                        when: archUpdatesMouse.containsMouse
+                        PropertyChanges {
+                            target: archUpdates
+                            implicitWidth: 65
+                            border.color: "#C87DD4"
+                            border.width: 2
+                        }
+                    },
+                    State {
+                        name: "default"
+                        when: !archUpdatesMouse.containsMouse
+                        PropertyChanges {
+                            target: archUpdates
+                            implicitWidth: 60
+                            border.color: "#443355"
+                        }
+                    }
+                ]
+
+                RowLayout {
+                    anchors.centerIn: parent
+                    spacing: 4
+
+                    Text {
+                        text: "󰚰"
+                        font.pixelSize: 16
+                        color: "#C87DD4"
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+
+                    Text {
+                        text: updates.updateCount > 0 ? updates.updateCount : "0"
+                        color: updates.updateCount > 0 ? "#D9D0E8" : "#C87DD4"
+                        font.pixelSize: 16
+                        Layout.alignment: Qt.AlignVCenter
+                        font.family: "Iosevka"
+                    }
+                }
+            }
         }
     }
 }

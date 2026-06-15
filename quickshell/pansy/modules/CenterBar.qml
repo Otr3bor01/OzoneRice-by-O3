@@ -166,7 +166,7 @@ PanelWindow {
                         }
                     }
                 }
-                //Mpris Row  (WIP) 
+                //Mpris Row
                 Item {
                     implicitWidth: 300
                     Layout.rightMargin: 200
@@ -281,7 +281,7 @@ PanelWindow {
                             }
                             Text { //pause
                                 anchors.centerIn: mask
-                                text: activePlayer && activePlayer.playbackState === MprisPlayer.Playing ? "" : ""
+                                text: activePlayer && activePlayer.playbackState === MprisPlayer.Playing ? "" : ""
                                 color: playMouse.containsMouse ? "#D9D0E8" : "#C87DD4"
                                 MouseArea {
                                     id: playMouse

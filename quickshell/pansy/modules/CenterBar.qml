@@ -471,7 +471,25 @@ PanelWindow {
                 triggeredOnStart: true
                 onTriggered: updatesCheck.running = true
             }
+            Timer {
+                id: refreshTimer
+                interval: 30000
+                repeat: true
+                running: false
+                property int ticks: 0
 
+                onTriggered: {
+                    updatesCheck.running = true
+                    ticks++
+                    if (ticks >= 20) {  // dopo 10 minuti si ferma
+                        stop()
+                        ticks = 0
+                    }
+                }
+                onRunningChanged: {
+                    if (running) ticks = 0
+                }
+            }
             Process {
                 id: updatesCheck
                 command: ["checkupdates"]
@@ -488,7 +506,7 @@ PanelWindow {
 
             Process {
                 id: updateRun
-                command: ["kitty", "--hold", "-e", "bash", "-c", "sudo pacman -Syu; echo '\nPremi invio per chiudere...'; read"]
+                command: ["kitty", "-e", "bash", "-c", "sudo pacman -Syu; echo '\nPremi invio per chiudere...'; read"]
             }
 
             Rectangle {
@@ -508,7 +526,10 @@ PanelWindow {
                     id: archUpdatesMouse
                     anchors.fill: parent
                     hoverEnabled: true
-                    onClicked: updateRun.running = true
+                    onClicked: {
+                        updateRun.running = true
+                        refreshTimer.start()
+                    }
                     cursorShape: Qt.PointingHandCursor
                 }
 

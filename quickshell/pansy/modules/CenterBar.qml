@@ -510,7 +510,7 @@ PanelWindow {
                     onTriggered: volume.inPulse = false
                 }
 
-                Timer { //PulseTimer
+                Timer { //PulseTimer2
                     id: pulseTimer2
                     interval: 50
                     repeat: false

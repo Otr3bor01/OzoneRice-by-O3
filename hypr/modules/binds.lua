@@ -5,7 +5,7 @@ local terminal = "kitty"
 local fileManager_TUI = "lf"
 local menu = "fuzzel" --wip
 -- local textEditor = nvim
--- local codeTextEditor = vscodium
+local codeTextEditor = "code"
 local fileManager_GUI = "thunar"
 local mainMod = "SUPER"
 local musicPlayer = "strawberry"
@@ -22,7 +22,7 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(musicPlayer))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian")) --obsidian
-hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("code")) --vscode
+hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd(codeTextEditor)) --vscode
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("ao"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("vesktop"))
 
@@ -66,14 +66,14 @@ local function updateState()
         f:close()
     end
 end
-
-updateState() 
-
+updateState()
 
 hl.bind(mainMod .. " + TAB", function()
     secondMonitor = not secondMonitor
     updateState()
 end)
+
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.window.move({ monitor = "+1" }))
 
 --workspaces system_binds end
 

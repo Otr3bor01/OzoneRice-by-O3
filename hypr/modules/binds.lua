@@ -1,4 +1,29 @@
 ----------------
+------var-------
+----------------
+local secondMonitor = false
+local targetMonitor = ""
+----------------
+---functions----
+----------------
+local function targetMonitorUpdate(secMon)
+    local tarMon = ""
+    if secMon then
+        tarMon = "DP-2"
+    else
+        tarMon = "DP-1"
+    end
+    return tarMon
+end
+
+local function updateState()
+    local f = io.open("/tmp/hypr_secondMonitor", "w")
+    if f then
+        f:write(secondMonitor and "true" or "false")
+        f:close()
+    end
+end
+----------------
 ----programs----
 ----------------
 local terminal = "kitty"
@@ -36,7 +61,10 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({direction = "down"}))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 
 --workspaces system_binds
-local secondMonitor = false
+targetMonitor = targetMonitorUpdate(secondMonitor)
+updateState()
+
+
 for i = 1, 5 do
     local key = tostring(i)
     hl.bind(mainMod .. " + " .. key, function()
@@ -59,21 +87,22 @@ for i = 1, 5 do
     end)
 end
 
-local function updateState()
-    local f = io.open("/tmp/hypr_secondMonitor", "w")
-    if f then
-        f:write(secondMonitor and "true" or "false")
-        f:close()
-    end
-end
-updateState()
+
+
 
 hl.bind(mainMod .. " + TAB", function()
     secondMonitor = not secondMonitor
     updateState()
+    targetMonitor = targetMonitorUpdate(secondMonitor)
+    hl.dispatch(hl.dsp.focus({monitor = targetMonitor}))
 end)
 
 hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.window.move({ monitor = "+1" }))
+
+hl.bind(mainMod .. " + SHIFT + left",  hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + up",    hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + down",  hl.dsp.window.swap({ direction = "down" }))
 
 --workspaces system_binds end
 

@@ -73,7 +73,7 @@ PanelWindow {
     //===Row
     Row{
         anchors.fill: parent
-        spacing: 10
+        spacing: 5
         //workspace indicator
         Rectangle {
             id: workspaceIndicator
@@ -120,7 +120,7 @@ PanelWindow {
         }
         //spacer 
         Rectangle {
-            width: 100
+            width: 150
             height: 100
             color: "transparent"
         }
@@ -395,17 +395,17 @@ PanelWindow {
 
         //spacer 
         Rectangle {
-            width: 100
+            width: 250
             height: 100
             color: "transparent"
         }
         Item{   //menù work in progress
-            width: 65
+            width: 35
             height: 35
             anchors.verticalCenter: parent.verticalCenter
             Rectangle {
                 id: archMenu
-                implicitWidth: 35
+                implicitWidth: 30
                 implicitHeight: implicitWidth
                 radius: implicitWidth / 2
                 anchors.centerIn: parent

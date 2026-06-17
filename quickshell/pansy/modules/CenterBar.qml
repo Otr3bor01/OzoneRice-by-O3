@@ -458,7 +458,7 @@ PanelWindow {
             }
         }
         Item{ //volume
-            //quando si alza e si abbassa il volume deve fare un piccolo battito ed un suono di verifica
+            //quando si alza e si abbassa il volume deve fare un piccolo battito ed un suono di verifica --> Megalovania
             id: vol
             width: 65
             height: 35
@@ -468,19 +468,49 @@ PanelWindow {
             }
             property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0.0
             property var sink: Pipewire.defaultAudioSink
+            property int megaCount : 0
+            property real lastInputTime: 0
+
+            function increaseMegaCount() {
+                if (vol.megaCount < 10) {
+                    vol.megaCount += 1
+                } else {
+                    vol.megaCount = 1
+                }
+            }
 
             MediaPlayer {
                 id: popSound
                 source: Qt.resolvedUrl("media/pop.wav")
                 audioOutput: AudioOutput {}
             }
+
+            MediaPlayer {
+                id: megalovania
+                source: vol.megaCount === 1 ? Qt.resolvedUrl("media/megalovania-01.wav") :
+                        vol.megaCount === 2 ? Qt.resolvedUrl("media/megalovania-02.wav") :
+                        vol.megaCount === 3 ? Qt.resolvedUrl("media/megalovania-03.wav") :
+                        vol.megaCount === 4 ? Qt.resolvedUrl("media/megalovania-04.wav") :
+                        vol.megaCount === 5 ? Qt.resolvedUrl("media/megalovania-05.wav") :
+                        vol.megaCount === 6 ? Qt.resolvedUrl("media/megalovania-06.wav") :
+                        vol.megaCount === 7 ? Qt.resolvedUrl("media/megalovania-07.wav") :
+                        vol.megaCount === 8 ? Qt.resolvedUrl("media/megalovania-08.wav") :
+                        vol.megaCount === 9 ? Qt.resolvedUrl("media/megalovania-09.wav") :
+                        vol.megaCount === 10 ? Qt.resolvedUrl("media/megalovania-10.wav") : null
+                audioOutput: AudioOutput {}
+            }
+
             onCurrentVolumeChanged: {
                 if (sink && !sink.audio.muted) {
-            
-                    popSound.stop();
-                    popSound.play();
+                    let currentTime = Date.now();
+                    if (currentTime - vol.lastInputTime > 40) {
+                        vol.lastInputTime = currentTime;                    
+                        vol.increaseMegaCount()
+                        megalovania.stop();
+                        megalovania.play();
 
-                    volume.triggerPulse2();
+                        volume.triggerPulse2();
+                    }
                 }
             }
             Rectangle {

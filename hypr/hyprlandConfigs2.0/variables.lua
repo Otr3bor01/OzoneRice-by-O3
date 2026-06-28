@@ -1,0 +1,1 @@
+--scrivere uno script che vada a generare il current.lua

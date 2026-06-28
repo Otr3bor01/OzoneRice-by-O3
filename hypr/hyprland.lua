@@ -1,3 +1,5 @@
+-- Configs
+
 require("modules.monitors")
 require("modules.binds")
 require("modules.config")

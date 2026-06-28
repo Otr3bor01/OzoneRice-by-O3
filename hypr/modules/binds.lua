@@ -49,7 +49,7 @@ hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian")) --obsidian
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd(codeTextEditor)) --vscode
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("ao"))
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("vesktop"))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("discord"))
 
 --window_binds / workspace_binds--
 hl.bind(mainMod .. " + V", hl.dsp.window.float())

@@ -1,3 +1,5 @@
+local func = require("modules.functions")
+
 hl.on("hyprland.start", function()
     ---hl.exec_cmd("waybar")
     hl.exec_cmd("bash ~/.config/quickshell/pansy.sh")
@@ -8,4 +10,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("udiskie &")
     hl.exec_cmd("fxitx5 &")
     hl.exec_cmd("hyprpaper")
+    func.targetMonitor = func.targetMonitorUpdate(func.secondMonitor)
+    func.updateState()
 end)

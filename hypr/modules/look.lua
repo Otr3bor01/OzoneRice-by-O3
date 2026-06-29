@@ -1,3 +1,6 @@
+local theme = require("currentTheme")
+
+
 hl.config({
     general = {
         gaps_in = 5,

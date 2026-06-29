@@ -65,7 +65,7 @@ size =                  13
 #-----Hyprland--------
 #---------------------
 
-#===Hyprland===
+#===Hyprland Specifics===
 [hyprland.general]
 gaps_in = 5
 gaps_out = 20
@@ -74,13 +74,3 @@ layout = "dwindle"
 active_gradient = ["colors.normal.purple", "colors.bright.black"]
 inactive_gradient = ["colors.normal.white", "colors.bright.purple"]
 angle = 225
-
-
-
-#---------------------
-#------Varaibles------
-#---------------------
-terminal = "kitty"
-fileManager_TUI = "lf"
-menu = "fuzzel"
-#wip
